@@ -57,7 +57,7 @@ public class Main {
             System.out.println("1. Add Rental");
             System.out.println("2. View Rentals by Customer License Number");
             System.out.println("3. View Rentals by Car VIN");
-            System.out.println("4.")
+            System.out.println("4.");
 }
     }
 }
