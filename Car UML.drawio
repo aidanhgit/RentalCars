@@ -1,0 +1,64 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:137.0) Gecko/20100101 Firefox/137.0" version="26.2.12">
+  <diagram name="Page-1" id="dFNx9PWCOPS5y9BxhCDY">
+    <mxGraphModel dx="786" dy="1128" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="usK4ngnlHS8aIhoTFKn4-1" value="Car" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="253.5" y="180" width="340" height="360" as="geometry" />
+        </mxCell>
+        <mxCell id="usK4ngnlHS8aIhoTFKn4-2" value="&lt;div&gt;- VIN: String&lt;/div&gt;&lt;div&gt;- make: String&lt;/div&gt;&lt;div&gt;- model: String&lt;/div&gt;&lt;div&gt;- MPG: double&lt;/div&gt;&lt;div&gt;- price: double&lt;/div&gt;&lt;div&gt;&lt;u&gt;- numCarInt: int&lt;/u&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="usK4ngnlHS8aIhoTFKn4-1" vertex="1">
+          <mxGeometry y="26" width="340" height="94" as="geometry" />
+        </mxCell>
+        <mxCell id="usK4ngnlHS8aIhoTFKn4-3" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="usK4ngnlHS8aIhoTFKn4-1" vertex="1">
+          <mxGeometry y="120" width="340" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="usK4ngnlHS8aIhoTFKn4-4" value="&lt;div&gt;+ Car(String VIN, String make, String model, double MPG, double price)&lt;/div&gt;&lt;div&gt;+ getVIN(): String&lt;/div&gt;&lt;div&gt;+ getMake(): String&lt;/div&gt;&lt;div&gt;+ getModel(): String&lt;/div&gt;&lt;div&gt;+ getMPG(): double&lt;/div&gt;&lt;div&gt;+ getPrice(): double&lt;/div&gt;&lt;div&gt;&lt;u&gt;+ getNumCar: int&lt;/u&gt;&lt;/div&gt;&lt;div&gt;+ setVIN(VIN: String)&lt;/div&gt;&lt;div&gt;+ setMake(make: String)&lt;/div&gt;&lt;div&gt;+ setModel(model: String)&lt;/div&gt;&lt;div&gt;+ setMPG(MPG: double)&lt;/div&gt;&lt;div&gt;+ setPrice(price: double)&lt;/div&gt;&lt;div&gt;+ getTotalPrice(): double&lt;/div&gt;&lt;div&gt;+ toString(): String&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="usK4ngnlHS8aIhoTFKn4-1" vertex="1">
+          <mxGeometry y="128" width="340" height="232" as="geometry" />
+        </mxCell>
+        <mxCell id="waisnGI-N7LZda-zoIoA-20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.25;entryY=1;entryDx=0;entryDy=0;" parent="1" source="waisnGI-N7LZda-zoIoA-2" target="usK4ngnlHS8aIhoTFKn4-1" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="waisnGI-N7LZda-zoIoA-2" value="Sedan" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="68" y="580" width="340" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="waisnGI-N7LZda-zoIoA-4" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="waisnGI-N7LZda-zoIoA-2" vertex="1">
+          <mxGeometry y="26" width="340" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="waisnGI-N7LZda-zoIoA-5" value="&lt;div&gt;+ Sedan(String VIN, String make, String model, double MPG, double price)&lt;/div&gt;&lt;div&gt;+ getTotalPrice(days int, price double): double&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="waisnGI-N7LZda-zoIoA-2" vertex="1">
+          <mxGeometry y="34" width="340" height="56" as="geometry" />
+        </mxCell>
+        <mxCell id="waisnGI-N7LZda-zoIoA-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" parent="1" source="waisnGI-N7LZda-zoIoA-6" target="usK4ngnlHS8aIhoTFKn4-1" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="waisnGI-N7LZda-zoIoA-6" value="Sports" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="256" y="800" width="335" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="waisnGI-N7LZda-zoIoA-7" value="- premiumFee: double" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="waisnGI-N7LZda-zoIoA-6" vertex="1">
+          <mxGeometry y="26" width="335" height="24" as="geometry" />
+        </mxCell>
+        <mxCell id="waisnGI-N7LZda-zoIoA-8" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="waisnGI-N7LZda-zoIoA-6" vertex="1">
+          <mxGeometry y="50" width="335" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="waisnGI-N7LZda-zoIoA-9" value="&lt;div&gt;+ Sports(String VIN, String make, String model, double MPG, double price, double premiumFee)&lt;/div&gt;&lt;div&gt;+ getTotalPrice(days int, price double, premiumFee double): double&lt;/div&gt;&lt;div&gt;+ toString(): String&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="waisnGI-N7LZda-zoIoA-6" vertex="1">
+          <mxGeometry y="58" width="335" height="92" as="geometry" />
+        </mxCell>
+        <mxCell id="waisnGI-N7LZda-zoIoA-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.75;entryY=1;entryDx=0;entryDy=0;flowAnimation=0;strokeColor=default;" parent="1" source="waisnGI-N7LZda-zoIoA-10" target="usK4ngnlHS8aIhoTFKn4-1" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="waisnGI-N7LZda-zoIoA-10" value="SUV" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="448" y="580" width="335" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="waisnGI-N7LZda-zoIoA-11" value="- gasGuzzlerFee: double" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="waisnGI-N7LZda-zoIoA-10" vertex="1">
+          <mxGeometry y="26" width="335" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="waisnGI-N7LZda-zoIoA-12" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="waisnGI-N7LZda-zoIoA-10" vertex="1">
+          <mxGeometry y="80" width="335" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="waisnGI-N7LZda-zoIoA-13" value="&lt;div&gt;+ SUV(String VIN, String make, String model, double MPG, double price, double gasGuzzlerFee)&lt;/div&gt;&lt;div&gt;+ getTotalPrice(days int, price double, gasGuzzlerFee): double&lt;/div&gt;&lt;div&gt;+ toString(): String&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="waisnGI-N7LZda-zoIoA-10" vertex="1">
+          <mxGeometry y="88" width="335" height="92" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
