@@ -5,7 +5,10 @@ public class Customer{
     private String licenseNum;
     private static int numCustomer = 0;
 
-    //Constructor
+    //Constructors
+    public Customer() {
+        
+    }
     public Customer(String name, String DOB, String phone, String licenseNum) {
         this.name = name;
         this.DOB = DOB;
