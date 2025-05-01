@@ -168,13 +168,79 @@ public class Main {
     }
 
     // Mohammad's Part - Rental Menu
-  public static void rentalMenu(Rental[] rentals, int rentalCount, Scanner input) {
-        while (true) {
-            System.out.println("\n--- Rental Menu ---");
-            System.out.println("1. Add Rental");
-            System.out.println("2. View Rentals by Customer License Number");
-            System.out.println("3. View Rentals by Car VIN");
-            System.out.println("4.");
+ public static void rentalMenu(Rental[] rentals, int rentalCount, Scanner input) {
+    while (true) {
+        System.out.println("\n--- Rental Menu ---");
+        System.out.println("1. Add Rental");
+        System.out.println("2. View Rentals by Customer License Number");
+        System.out.println("3. View Rentals by Car VIN");
+        System.out.println("4. Exit Rental Menu");
+        System.out.print("Choose option: ");
+        int choice = input.nextInt();
+        input.nextLine(); // Consume newline
+
+        if (choice == 1) {
+            if (rentalCount >= rentals.length) {
+                System.out.println("Cannot add more rentals.");
+                continue;
+            }
+
+            System.out.print("Enter Customer Name: ");
+            String name = input.nextLine();
+
+            System.out.print("Enter License Number: ");
+            String license = input.nextLine();
+
+            System.out.print("Enter Car VIN: ");
+            String vin = input.nextLine();
+
+            System.out.print("Enter Rental Date (MM/DD/YYYY): ");
+            String date = input.nextLine();
+
+            System.out.print("Enter Number of Days: ");
+            int days = input.nextInt();
+
+            rentals[rentalCount] = new Rental(name, license, vin, date, days);
+            rentalCount++;
+            System.out.println("Rental successfully added!");
+
+        } else if (choice == 2) {
+            System.out.print("Enter License Number: ");
+            String license = input.nextLine();
+            boolean found = false;
+
+            for (int i = 0; i < rentalCount; i++) {
+                if (rentals[i].getLicenseNumber().equals(license)) {
+                    System.out.println(rentals[i]);
+                    found = true;
+                }
+            }
+
+            if (!found) {
+                System.out.println("No rentals found for this license number.");
+            }
+
+        } else if (choice == 3) {
+            System.out.print("Enter Car VIN: ");
+            String vin = input.nextLine();
+            boolean found = false;
+
+            for (int i = 0; i < rentalCount; i++) {
+                if (rentals[i].getVin().equals(vin)) {
+                    System.out.println(rentals[i]);
+                    found = true;
+                }
+            }
+
+            if (!found) {
+                System.out.println("No rentals found for this VIN.");
+            }
+
+        } else if (choice == 4) {
+            System.out.println("Exiting Rental Menu...");
+            break;
+        } else {
+            System.out.println("Invalid option.");
         }
     }
 }
