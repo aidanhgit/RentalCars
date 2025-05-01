@@ -1,4 +1,6 @@
 import java.util.Scanner;
+
+import javax.print.attribute.standard.JobHoldUntil;
 import javax.swing.JOptionPane;
 
 public class Main {
@@ -165,8 +167,108 @@ public class Main {
     // Aidan's Part - Car Menu
     public static int carMenu(Car[] cars, int carCount, Scanner input) {
         // To be completed by Aidan
+        while (true) {
+            String option = JOptionPane.showInputDialog("1. Add Car\n2. Remove Car\n3. Search Cars\n4. Display Cars\n5. Exit Car Menu");
+            if (option == null || option.equals("5"))
+                break;
+
+            switch (option) {
+                case "1":
+                    addCar(cars, carCount);
+                    break;
+                case "2":
+                    removeCar(cars, carCount);
+                    break;
+                case "3":
+                    searchCars(cars, carCount);
+                    break;
+                case "4":
+                    viewCars(cars, carCount);
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(null, "Entry invalid. Try again.");
+            }
+        }
         return carCount;
     }
+
+    /**
+     * Adds a new car to the collection.
+     * 
+     * @param cars List of all cars
+     * @param carCount 
+     */
+    public static void addCar(Car[] cars, int carCount) {
+        while (true) {
+            try {
+                String type = JOptionPane.showInputDialog("Enter vehicle type (Sedan/Sports/SUV)");
+                if (type == null) return;
+
+                String vin = JOptionPane.showInputDialog("Enter car VIN:");
+                String make = JOptionPane.showInputDialog("Enter Model:");
+                String model = JOptionPane.showInputDialog("Enter Model:");
+                double MPG = Double.parseDouble(JOptionPane.showInputDialog("Enter MPG:"));
+                double price = Double.parseDouble(JOptionPane.showInputDialog("Enter Price:"));
+                
+                if (type.equalsIgnoreCase("Sedan")) {
+                    boolean isLuxury = false;
+                    if (JOptionPane.showConfirmDialog(null, "Is this a luxury Sedan?", "Luxury Car Check",
+                    JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                        isLuxury = true;
+                    }
+                    cars[carCount++] = new Sedan(vin, make, model, MPG, price, isLuxury);
+                } else if (type.equalsIgnoreCase("Sports")) {
+                    double premiumFee = Double.parseDouble(JOptionPane.showInputDialog("Enter premium fee:"));
+                    cars[carCount++] = new Sports(vin, make, model, MPG, price, premiumFee);
+                } else if (type.equalsIgnoreCase("SUV")) {
+                    double gasGuzzlerFee = Double.parseDouble(JOptionPane.showInputDialog("Enter Gas Guzzler Fee Multiplier"));
+                    cars[carCount++] = new SUV(vin, make, model, MPG, price, gasGuzzlerFee);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Invalid Vehicle Type")
+                }
+                break;
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error: " + e.getMessage() + "\nPlease try again.");
+            }
+        }
+    }
+
+    public static void removeCar(Car[] cars, int carCount) {
+        String vin = JOptionPane.showInputDialog("Enter vin of vehicle to remove:");
+        for (int i = 0; i < carCount; i++) {
+            if (cars[i].getVin().equals(vin)) {
+                cars[i] = cars[--carCount];
+                JOptionPane.showMessageDialog(null, "Car removed successfully.");
+                return;
+            }
+        }
+        JOptionPane.showMessageDialog(null, "Car not found.");
+    }
+
+    public static void searchCars(Car[] cars, int carCount) {
+        String vin = JOptionPane.showInputDialog("Enter vin to search for:");
+        for (int i = 0; i < carCount; i++) {
+            if (cars[i].getVin().equals(vin)) {
+                JOptionPane.showMessageDialog(null, cars[i].toString());
+                return;
+            }
+        }
+        JOptionPane.showMessageDialog(null, "Car not found.");
+    }
+
+    public static void viewCars(Car[] cars, int carCount) {
+        if (carCount == 0) {
+            JOptionPane.showMessageDialog(null, "No cars available to view.");
+            return;
+        }
+        String output = "Cars:\n";
+        for (int i = 0; i < carCount; i++) {
+            output += cars[i].toString() + "\n\n";
+        }
+        JOptionPane.showMessageDialog(null, output);
+    }
+
+
 
     // Mohammad's Part - Rental Menu
   public static void rentalMenu(Rental[] rentals, int rentalCount, Scanner input) {
