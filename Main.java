@@ -307,85 +307,97 @@ public class Main {
 
     // Mohammad's Part - Rental Menu
     public static void rentalMenu(Rental[] rentals, int rentalCount, Scanner input) {
-        while (true) {
-            // Display menu to the user
-            System.out.println("\n--- Rental Menu ---");
-            System.out.println("1. Add Rental");
-            System.out.println("2. View Rentals by Customer License Number");
-            System.out.println("3. View Rentals by Car VIN");
-            System.out.println("4. Exit Rental Menu");
-            System.out.print("Choose option: ");
-            int choice = input.nextInt();
-            input.nextLine(); // Consume newline
+    while (true) {
+        // Display menu to the user using JOptionPane
+        String menu = "--- Rental Menu ---\n"
+                    + "1. Add Rental\n"
+                    + "2. View Rentals by Customer License Number\n"
+                    + "3. View Rentals by Car VIN\n"
+                    + "4. Exit Rental Menu\n\n"
+                    + "Choose option:";
+        String choiceStr = JOptionPane.showInputDialog(null, menu);
+        if (choiceStr == null) {
+            JOptionPane.showMessageDialog(null, "Exiting Rental Menu...");
+            break;
+        }
 
-            //Option 1 Add a new rental to the system
-            if (choice == 1) {
-                if (rentalCount >= rentals.length) {
-                    System.out.println("Cannot add more rentals.");
-                    continue;
-                }
+        int choice = Integer.parseInt(choiceStr);
 
-                //prompt user for rental details
-                System.out.print("Enter Customer Name: ");
-                String name = input.nextLine();
-
-                System.out.print("Enter License Number: ");
-                String license = input.nextLine();
-
-                System.out.print("Enter Car VIN: ");
-                String vin = input.nextLine();
-
-                System.out.print("Enter Rental Date (MM/DD/YYYY): ");
-                String date = input.nextLine();
-
-                System.out.print("Enter Number of Days: ");
-                int days = input.nextInt();
-
-                rentals[rentalCount] = new Rental(name, license, vin, date, days);
-                rentalCount++;
-                System.out.println("Rental successfully added!");
-
-                // Option 2: Search and Display rentals for a specific customer
-            } else if (choice == 2) {
-                System.out.print("Enter License Number: ");
-                String license = input.nextLine();
-                boolean found = false;
-
-                for (int i = 0; i < rentalCount; i++) {
-                    if (rentals[i].getLicenseNumber().equals(license)) {
-                        System.out.println(rentals[i]);
-                        found = true;
-                    }
-                }
-
-                if (!found) {
-                    System.out.println("No rentals found for this license number.");
-                }
-
-                //Option 3 Search and display rentals for a specific car VIN
-            } else if (choice == 3) {
-                System.out.print("Enter Car VIN: ");
-                String vin = input.nextLine();
-                boolean found = false;
-
-                for (int i = 0; i < rentalCount; i++) {
-                    if (rentals[i].getVin().equals(vin)) {
-                        System.out.println(rentals[i]);
-                        found = true;
-                    }
-                }
-
-                if (!found) {
-                    System.out.println("No rentals found for this VIN.");
-                }
-
-                // Option 4 Exit the rental menu loop and return to the main menu
-            } else if (choice == 4) {
-                System.out.println("Exiting Rental Menu...");
-                break;
-            } else {
-                System.out.println("Invalid option.");
+        // Option 1: Add a new rental to the system
+        if (choice == 1) {
+            if (rentalCount >= rentals.length) {
+                JOptionPane.showMessageDialog(null, "Cannot add more rentals.");
+                continue;
             }
+
+            // Prompt user for rental details using dialog boxes
+            String name = JOptionPane.showInputDialog("Enter Customer Name:");
+            String license = JOptionPane.showInputDialog("Enter License Number:");
+            String vin = JOptionPane.showInputDialog("Enter Car VIN:");
+            String date = JOptionPane.showInputDialog("Enter Rental Date (MM/DD/YYYY):");
+            String daysStr = JOptionPane.showInputDialog("Enter Number of Days:");
+
+            if (name == null || license == null || vin == null || date == null || daysStr == null) {
+                JOptionPane.showMessageDialog(null, "Rental creation canceled.");
+                continue;
+            }
+
+            int days = Integer.parseInt(daysStr);
+
+            rentals[rentalCount] = new Rental(name, license, vin, date, days);
+            rentalCount++;
+            JOptionPane.showMessageDialog(null, "Rental successfully added!");
+
+        // Option 2: Search and Display rentals for a specific customer
+        } else if (choice == 2) {
+            String license = JOptionPane.showInputDialog("Enter License Number:");
+            if (license == null) continue;
+
+            boolean found = false;
+            StringBuilder result = new StringBuilder();
+
+            for (int i = 0; i < rentalCount; i++) {
+                if (rentals[i].getLicenseNumber().equals(license)) {
+                    result.append(rentals[i].toString()).append("\n\n");
+                    found = true;
+                }
+            }
+
+            if (found) {
+                JOptionPane.showMessageDialog(null, result.toString());
+            } else {
+                JOptionPane.showMessageDialog(null, "No rentals found for this license number.");
+            }
+
+        // Option 3: Search and display rentals for a specific car VIN
+        } else if (choice == 3) {
+            String vin = JOptionPane.showInputDialog("Enter Car VIN:");
+            if (vin == null) continue;
+
+            boolean found = false;
+            StringBuilder result = new StringBuilder();
+
+            for (int i = 0; i < rentalCount; i++) {
+                if (rentals[i].getVin().equals(vin)) {
+                    result.append(rentals[i].toString()).append("\n\n");
+                    found = true;
+                }
+            }
+
+            if (found) {
+                JOptionPane.showMessageDialog(null, result.toString());
+            } else {
+                JOptionPane.showMessageDialog(null, "No rentals found for this VIN.");
+            }
+
+        // Option 4: Exit the rental menu loop and return to the main menu
+        } else if (choice == 4) {
+            JOptionPane.showMessageDialog(null, "Exiting Rental Menu...");
+            break;
+
+        // Handle invalid input
+        } else {
+            JOptionPane.showMessageDialog(null, "Invalid option.");
         }
     }
 }
