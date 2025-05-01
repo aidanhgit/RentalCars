@@ -176,10 +176,10 @@ public class Main {
 
             switch (option) {
                 case "1":
-                    addCar(cars, carCount);
+                    carCount = addCar(cars, carCount);
                     break;
                 case "2":
-                    removeCar(cars, carCount);
+                    carCount = removeCar(cars, carCount);
                     break;
                 case "3":
                     searchCars(cars, carCount);
@@ -200,15 +200,15 @@ public class Main {
      * @param cars     List of all cars
      * @param carCount
      */
-    public static void addCar(Car[] cars, int carCount) {
+    public static int addCar(Car[] cars, int carCount) {
         while (true) {
             try {
                 String type = JOptionPane.showInputDialog("Enter vehicle type (Sedan/Sports/SUV)");
                 if (type == null)
-                    return;
+                    return carCount;
 
                 String vin = JOptionPane.showInputDialog("Enter car VIN:");
-                String make = JOptionPane.showInputDialog("Enter Model:");
+                String make = JOptionPane.showInputDialog("Enter Make:");
                 String model = JOptionPane.showInputDialog("Enter Model:");
                 double MPG = Double.parseDouble(JOptionPane.showInputDialog("Enter MPG:"));
                 double price = Double.parseDouble(JOptionPane.showInputDialog("Enter Price:"));
@@ -220,33 +220,37 @@ public class Main {
                         isLuxury = true;
                     }
                     cars[carCount++] = new Sedan(vin, make, model, MPG, price, isLuxury);
+                    return carCount;
                 } else if (type.equalsIgnoreCase("Sports")) {
                     double premiumFee = Double.parseDouble(JOptionPane.showInputDialog("Enter premium fee:"));
                     cars[carCount++] = new Sports(vin, make, model, MPG, price, premiumFee);
+                    return carCount;
                 } else if (type.equalsIgnoreCase("SUV")) {
                     double gasGuzzlerFee = Double
                             .parseDouble(JOptionPane.showInputDialog("Enter Gas Guzzler Fee Multiplier"));
                     cars[carCount++] = new SUV(vin, make, model, MPG, price, gasGuzzlerFee);
+                    return carCount;
                 } else {
                     JOptionPane.showMessageDialog(null, "Invalid Vehicle Type");
                 }
-                break;
+                return carCount;
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Error: " + e.getMessage() + "\nPlease try again.");
             }
         }
     }
 
-    public static void removeCar(Car[] cars, int carCount) {
+    public static int removeCar(Car[] cars, int carCount) {
         String vin = JOptionPane.showInputDialog("Enter vin of vehicle to remove:");
         for (int i = 0; i < carCount; i++) {
             if (cars[i].getVin().equals(vin)) {
                 cars[i] = cars[--carCount];
                 JOptionPane.showMessageDialog(null, "Car removed successfully.");
-                return;
+                return carCount;
             }
         }
         JOptionPane.showMessageDialog(null, "Car not found.");
+        return carCount;
     }
 
     public static void searchCars(Car[] cars, int carCount) {
