@@ -19,8 +19,9 @@ public class Main {
 
         String options = "";
         do {
-            options = JOptionPane.showInputDialog("Enter option or quit: \n\nC: Customer Menu \nA: Car Menu \nR: Rental Menu \nQ: Quit");
-            switch(options){
+            options = JOptionPane.showInputDialog(
+                    "Enter option or quit: \n\nC: Customer Menu \nA: Car Menu \nR: Rental Menu \nQ: Quit");
+            switch (options) {
                 case "C":
                     customerCount = customerMenu(customers, customerCount, input); // Zachary's Part
                     break;
@@ -40,16 +41,18 @@ public class Main {
 
     // Zachary's Part - Customer Menu
     public static int customerMenu(Customer[] customers, int customerCount, Scanner input) {
-        //Looping through customer menu until the user quits
+        // Looping through customer menu until the user quits
         String options = "";
         do {
-            options = JOptionPane.showInputDialog("Enter option or quit: \n\nA: Add Customer \nP: Update Phone Number \nL: Update License Number \nR: Remove Customer \nQ: Quit");
-            switch(options){
+            options = JOptionPane.showInputDialog(
+                    "Enter option or quit: \n\nA: Add Customer \nP: Update Phone Number \nL: Update License Number \nR: Remove Customer \nQ: Quit");
+            switch (options) {
                 case "A":
                     try {
                         customerCount = addCustomer(customers, customerCount);
                     } catch (ArrayIndexOutOfBoundsException e) {
-                        JOptionPane.showMessageDialog(null, "Only 100 customers can be tracked, please delete one or more customers to add another");
+                        JOptionPane.showMessageDialog(null,
+                                "Only 100 customers can be tracked, please delete one or more customers to add another");
                     }
                     break;
                 case "P":
@@ -58,7 +61,7 @@ public class Main {
                 case "L":
                     updateCustomerLicense(customers, customerCount);
                 case "R":
-                    //to be completed by Zachary
+                    // to be completed by Zachary
                     break;
                 case "Q":
                     break;
@@ -69,19 +72,19 @@ public class Main {
         } while (!options.equals("Q"));
         return customerCount;
     }
-    
+
     // Zachary's Part - Method to add a customer
     public static int addCustomer(Customer[] customer, int customerCount) {
-        //Creating an Customer instance
+        // Creating an Customer instance
         Customer c = new Customer();
-        //Because these variables must be provided, each one loops if an exception is caught
+        // Because these variables must be provided, each one loops if an exception is
+        // caught
         boolean restart = true;
         do {
             try {
                 c.setName(JOptionPane.showInputDialog("Enter customer name: "));
                 restart = false;
-            }
-            catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
             }
         } while (restart);
@@ -90,8 +93,7 @@ public class Main {
             try {
                 c.setDOB(JOptionPane.showInputDialog("Enter Date of Birth: "));
                 restart = false;
-            }
-            catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
             }
         } while (restart);
@@ -100,8 +102,7 @@ public class Main {
             try {
                 c.setPhone(JOptionPane.showInputDialog("Enter phone number: "));
                 restart = false;
-            }
-            catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
             }
         } while (restart);
@@ -110,8 +111,7 @@ public class Main {
             try {
                 c.setLicenseNum(JOptionPane.showInputDialog("Enter license number: "));
                 restart = false;
-            }
-            catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
             }
         } while (restart);
@@ -123,20 +123,21 @@ public class Main {
     public static void updateCustomerPhone(Customer[] customer, int customerCount) {
         String message = "";
         int sum = 0;
-        //Loops through array of policies to create the message for display
-        for (int i = 0 ; i<customerCount;i++) {
-                sum = 1 + i;
-                message += sum + ".\n";
-                message += customer[i].toString();
+        // Loops through array of policies to create the message for display
+        for (int i = 0; i < customerCount; i++) {
+            sum = 1 + i;
+            message += sum + ".\n";
+            message += customer[i].toString();
         }
         try {
-            int options = Integer.parseInt(JOptionPane.showInputDialog("Enter the number of customer to update phone number\n\n" + message));
-            if(options>0 && customer[options-1].getPhone() != null) {
-                customer[options-1].setPhone(JOptionPane.showInputDialog("Enter phone number: "));
+            int options = Integer.parseInt(
+                    JOptionPane.showInputDialog("Enter the number of customer to update phone number\n\n" + message));
+            if (options > 0 && customer[options - 1].getPhone() != null) {
+                customer[options - 1].setPhone(JOptionPane.showInputDialog("Enter phone number: "));
             } else {
                 JOptionPane.showMessageDialog(null, "Customer not found");
             }
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Choice must be a number");
         }
     }
@@ -145,20 +146,21 @@ public class Main {
     public static void updateCustomerLicense(Customer[] customer, int customerCount) {
         String message = "";
         int sum = 0;
-        //Loops through array of policies to create the message for display
-        for (int i = 0 ; i<customerCount;i++) {
-                sum = 1 + i;
-                message += sum + ".\n";
-                message += customer[i].toString();
+        // Loops through array of policies to create the message for display
+        for (int i = 0; i < customerCount; i++) {
+            sum = 1 + i;
+            message += sum + ".\n";
+            message += customer[i].toString();
         }
         try {
-            int options = Integer.parseInt(JOptionPane.showInputDialog("Enter the number of customer to update license number\n\n" + message));
-            if(options>0 && customer[options-1].getLicenseNum() != null) {
-                customer[options-1].setLicenseNum(JOptionPane.showInputDialog("Enter license number: "));
+            int options = Integer.parseInt(
+                    JOptionPane.showInputDialog("Enter the number of customer to update license number\n\n" + message));
+            if (options > 0 && customer[options - 1].getLicenseNum() != null) {
+                customer[options - 1].setLicenseNum(JOptionPane.showInputDialog("Enter license number: "));
             } else {
                 JOptionPane.showMessageDialog(null, "Customer not found");
             }
-        } catch(NumberFormatException e) {
+        } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Choice must be a number");
         }
     }
@@ -167,7 +169,8 @@ public class Main {
     public static int carMenu(Car[] cars, int carCount, Scanner input) {
         // To be completed by Aidan
         while (true) {
-            String option = JOptionPane.showInputDialog("1. Add Car\n2. Remove Car\n3. Search Cars\n4. Display Cars\n5. Exit Car Menu");
+            String option = JOptionPane
+                    .showInputDialog("1. Add Car\n2. Remove Car\n3. Search Cars\n4. Display Cars\n5. Exit Car Menu");
             if (option == null || option.equals("5"))
                 break;
 
@@ -194,25 +197,26 @@ public class Main {
     /**
      * Adds a new car to the collection.
      * 
-     * @param cars List of all cars
-     * @param carCount 
+     * @param cars     List of all cars
+     * @param carCount
      */
     public static void addCar(Car[] cars, int carCount) {
         while (true) {
             try {
                 String type = JOptionPane.showInputDialog("Enter vehicle type (Sedan/Sports/SUV)");
-                if (type == null) return;
+                if (type == null)
+                    return;
 
                 String vin = JOptionPane.showInputDialog("Enter car VIN:");
                 String make = JOptionPane.showInputDialog("Enter Model:");
                 String model = JOptionPane.showInputDialog("Enter Model:");
                 double MPG = Double.parseDouble(JOptionPane.showInputDialog("Enter MPG:"));
                 double price = Double.parseDouble(JOptionPane.showInputDialog("Enter Price:"));
-                
+
                 if (type.equalsIgnoreCase("Sedan")) {
                     boolean isLuxury = false;
                     if (JOptionPane.showConfirmDialog(null, "Is this a luxury Sedan?", "Luxury Car Check",
-                    JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                            JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                         isLuxury = true;
                     }
                     cars[carCount++] = new Sedan(vin, make, model, MPG, price, isLuxury);
@@ -220,10 +224,11 @@ public class Main {
                     double premiumFee = Double.parseDouble(JOptionPane.showInputDialog("Enter premium fee:"));
                     cars[carCount++] = new Sports(vin, make, model, MPG, price, premiumFee);
                 } else if (type.equalsIgnoreCase("SUV")) {
-                    double gasGuzzlerFee = Double.parseDouble(JOptionPane.showInputDialog("Enter Gas Guzzler Fee Multiplier"));
+                    double gasGuzzlerFee = Double
+                            .parseDouble(JOptionPane.showInputDialog("Enter Gas Guzzler Fee Multiplier"));
                     cars[carCount++] = new SUV(vin, make, model, MPG, price, gasGuzzlerFee);
                 } else {
-                    JOptionPane.showMessageDialog(null, "Invalid Vehicle Type")
+                    JOptionPane.showMessageDialog(null, "Invalid Vehicle Type");
                 }
                 break;
             } catch (Exception e) {
@@ -267,82 +272,81 @@ public class Main {
         JOptionPane.showMessageDialog(null, output);
     }
 
-
-
     // Mohammad's Part - Rental Menu
- public static void rentalMenu(Rental[] rentals, int rentalCount, Scanner input) {
-    while (true) {
-        System.out.println("\n--- Rental Menu ---");
-        System.out.println("1. Add Rental");
-        System.out.println("2. View Rentals by Customer License Number");
-        System.out.println("3. View Rentals by Car VIN");
-        System.out.println("4. Exit Rental Menu");
-        System.out.print("Choose option: ");
-        int choice = input.nextInt();
-        input.nextLine(); // Consume newline
+    public static void rentalMenu(Rental[] rentals, int rentalCount, Scanner input) {
+        while (true) {
+            System.out.println("\n--- Rental Menu ---");
+            System.out.println("1. Add Rental");
+            System.out.println("2. View Rentals by Customer License Number");
+            System.out.println("3. View Rentals by Car VIN");
+            System.out.println("4. Exit Rental Menu");
+            System.out.print("Choose option: ");
+            int choice = input.nextInt();
+            input.nextLine(); // Consume newline
 
-        if (choice == 1) {
-            if (rentalCount >= rentals.length) {
-                System.out.println("Cannot add more rentals.");
-                continue;
-            }
-
-            System.out.print("Enter Customer Name: ");
-            String name = input.nextLine();
-
-            System.out.print("Enter License Number: ");
-            String license = input.nextLine();
-
-            System.out.print("Enter Car VIN: ");
-            String vin = input.nextLine();
-
-            System.out.print("Enter Rental Date (MM/DD/YYYY): ");
-            String date = input.nextLine();
-
-            System.out.print("Enter Number of Days: ");
-            int days = input.nextInt();
-
-            rentals[rentalCount] = new Rental(name, license, vin, date, days);
-            rentalCount++;
-            System.out.println("Rental successfully added!");
-
-        } else if (choice == 2) {
-            System.out.print("Enter License Number: ");
-            String license = input.nextLine();
-            boolean found = false;
-
-            for (int i = 0; i < rentalCount; i++) {
-                if (rentals[i].getLicenseNumber().equals(license)) {
-                    System.out.println(rentals[i]);
-                    found = true;
+            if (choice == 1) {
+                if (rentalCount >= rentals.length) {
+                    System.out.println("Cannot add more rentals.");
+                    continue;
                 }
-            }
 
-            if (!found) {
-                System.out.println("No rentals found for this license number.");
-            }
+                System.out.print("Enter Customer Name: ");
+                String name = input.nextLine();
 
-        } else if (choice == 3) {
-            System.out.print("Enter Car VIN: ");
-            String vin = input.nextLine();
-            boolean found = false;
+                System.out.print("Enter License Number: ");
+                String license = input.nextLine();
 
-            for (int i = 0; i < rentalCount; i++) {
-                if (rentals[i].getVin().equals(vin)) {
-                    System.out.println(rentals[i]);
-                    found = true;
+                System.out.print("Enter Car VIN: ");
+                String vin = input.nextLine();
+
+                System.out.print("Enter Rental Date (MM/DD/YYYY): ");
+                String date = input.nextLine();
+
+                System.out.print("Enter Number of Days: ");
+                int days = input.nextInt();
+
+                rentals[rentalCount] = new Rental(name, license, vin, date, days);
+                rentalCount++;
+                System.out.println("Rental successfully added!");
+
+            } else if (choice == 2) {
+                System.out.print("Enter License Number: ");
+                String license = input.nextLine();
+                boolean found = false;
+
+                for (int i = 0; i < rentalCount; i++) {
+                    if (rentals[i].getLicenseNumber().equals(license)) {
+                        System.out.println(rentals[i]);
+                        found = true;
+                    }
                 }
-            }
 
-            if (!found) {
-                System.out.println("No rentals found for this VIN.");
-            }
+                if (!found) {
+                    System.out.println("No rentals found for this license number.");
+                }
 
-        } else if (choice == 4) {
-            System.out.println("Exiting Rental Menu...");
-            break;
-        } else {
-            System.out.println("Invalid option.");
+            } else if (choice == 3) {
+                System.out.print("Enter Car VIN: ");
+                String vin = input.nextLine();
+                boolean found = false;
+
+                for (int i = 0; i < rentalCount; i++) {
+                    if (rentals[i].getVin().equals(vin)) {
+                        System.out.println(rentals[i]);
+                        found = true;
+                    }
+                }
+
+                if (!found) {
+                    System.out.println("No rentals found for this VIN.");
+                }
+
+            } else if (choice == 4) {
+                System.out.println("Exiting Rental Menu...");
+                break;
+            } else {
+                System.out.println("Invalid option.");
+            }
         }
     }
 }
