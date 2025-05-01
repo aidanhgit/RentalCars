@@ -308,6 +308,7 @@ public class Main {
     // Mohammad's Part - Rental Menu
     public static void rentalMenu(Rental[] rentals, int rentalCount, Scanner input) {
         while (true) {
+            // Display menu to the user
             System.out.println("\n--- Rental Menu ---");
             System.out.println("1. Add Rental");
             System.out.println("2. View Rentals by Customer License Number");
@@ -317,12 +318,14 @@ public class Main {
             int choice = input.nextInt();
             input.nextLine(); // Consume newline
 
+            //Option 1 Add a new rental to the system
             if (choice == 1) {
                 if (rentalCount >= rentals.length) {
                     System.out.println("Cannot add more rentals.");
                     continue;
                 }
 
+                //prompt user for rental details
                 System.out.print("Enter Customer Name: ");
                 String name = input.nextLine();
 
@@ -342,6 +345,7 @@ public class Main {
                 rentalCount++;
                 System.out.println("Rental successfully added!");
 
+                // Option 2: Search and Display rentals for a specific customer
             } else if (choice == 2) {
                 System.out.print("Enter License Number: ");
                 String license = input.nextLine();
@@ -358,6 +362,7 @@ public class Main {
                     System.out.println("No rentals found for this license number.");
                 }
 
+                //Option 3 Search and display rentals for a specific car VIN
             } else if (choice == 3) {
                 System.out.print("Enter Car VIN: ");
                 String vin = input.nextLine();
@@ -374,6 +379,7 @@ public class Main {
                     System.out.println("No rentals found for this VIN.");
                 }
 
+                // Option 4 Exit the rental menu loop and return to the main menu
             } else if (choice == 4) {
                 System.out.println("Exiting Rental Menu...");
                 break;
