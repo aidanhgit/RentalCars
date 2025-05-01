@@ -61,7 +61,7 @@ public class Main {
                 case "L":
                     updateCustomerLicense(customers, customerCount);
                 case "R":
-                    // to be completed by Zachary
+                    customerCount = removeCustomer(customers, customerCount);
                     break;
                 case "Q":
                     break;
@@ -123,11 +123,11 @@ public class Main {
     public static void updateCustomerPhone(Customer[] customer, int customerCount) {
         String message = "";
         int sum = 0;
-        // Loops through array of policies to create the message for display
-        for (int i = 0; i < customerCount; i++) {
-            sum = 1 + i;
-            message += sum + ".\n";
-            message += customer[i].toString();
+        //Loops through array of policies to create the message for display
+        for (int i = 0 ; i<customerCount;i++) {
+                sum = 1 + i;
+                message += customerCount + ".\n";
+                message += customer[i].toString() + "\n";
         }
         try {
             int options = Integer.parseInt(
@@ -146,11 +146,11 @@ public class Main {
     public static void updateCustomerLicense(Customer[] customer, int customerCount) {
         String message = "";
         int sum = 0;
-        // Loops through array of policies to create the message for display
-        for (int i = 0; i < customerCount; i++) {
-            sum = 1 + i;
-            message += sum + ".\n";
-            message += customer[i].toString();
+        //Loops through array of policies to create the message for display
+        for (int i = 0 ; i<customerCount;i++) {
+                sum = 1 + i;
+                message += sum + ".\n";
+                message += customer[i].toString() + "\n";
         }
         try {
             int options = Integer.parseInt(
@@ -163,6 +163,35 @@ public class Main {
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Choice must be a number");
         }
+    }
+
+    // Zachary's Part - Method to remove customer
+    public static int removeCustomer(Customer[] customer, int customerCount) {
+        String message = "";
+        int sum = 0;
+        //Loops through array of policies to create the message for display
+        for (int i = 0 ; i<customerCount;i++) {
+                sum = 1 + i;
+                message += sum + ".\n";
+                message += customer[i].toString() + "\n";
+        }
+        try {
+            int options = Integer.parseInt(JOptionPane.showInputDialog("Enter the number of customer to remove\n\n" + message));
+            if(options>0 && customer[options-1].getName() != null) {
+                //Making object null at index to delete it
+                customer[options-1] = null;
+                //Shifting the policies to fill the space
+                for(int i=options-1;i<customerCount;i++){
+                    customer[i] = customer[i+1];
+                }
+                customerCount--;
+            } else {
+                JOptionPane.showMessageDialog(null, "Customer not found");
+            }
+        } catch(NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Choice must be a number");
+        }
+        return customerCount;
     }
 
     // Aidan's Part - Car Menu
