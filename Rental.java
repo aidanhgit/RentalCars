@@ -1,32 +1,30 @@
 public class Rental {
 
-    // Instance Variables
-    private String customerName;
-    private String licenseNumber;
-    private String vin;
+    // Aggregated Objects (references to existing objects)
+    private Customer customer;  // Aggregation: links to an existing Customer
+    private Car car;            // Aggregation: links to an existing Car
+
     private String rentalDate;
     private int rentalDays;
 
-    // Constructor
-    public Rental(String customerName, String licenseNumber, String vin, String rentalDate, int rentalDays) {
-        setCustomerName(customerName);
-        setLicenseNumber(licenseNumber);
-        setVin(vin);
-        setRentalDate(rentalDate);
-        setRentalDays(rentalDays);
+    private static int numRental = 0;
+
+    // Constructor requires existing Customer and Car objects
+    public Rental(Customer customer, Car car, String rentalDate, int rentalDays) {
+        this.customer = customer;   
+        this.car = car;             
+        this.rentalDate = rentalDate;
+        this.rentalDays = rentalDays;
+        numRental++;
     }
 
-    // Accessors (Getters)
-    public String getCustomerName() {
-        return customerName;
+    // Getters
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public String getLicenseNumber() {
-        return licenseNumber;
-    }
-
-    public String getVin() {
-        return vin;
+    public Car getCar() {
+        return car;
     }
 
     public String getRentalDate() {
@@ -37,53 +35,42 @@ public class Rental {
         return rentalDays;
     }
 
-    // Mutators
-    public void setCustomerName(String customerName) {
-        if (customerName != null && !customerName.isEmpty()) {
-            this.customerName = customerName;
-        } else {
-            System.out.println("Invalid Customer Name.");
-        }
+    public static int getNumRental() {
+        return numRental;
     }
 
-    public void setLicenseNumber(String licenseNumber) {
-        if (licenseNumber != null && !licenseNumber.isEmpty()) {
-            this.licenseNumber = licenseNumber;
-        } else {
-            System.out.println("Invalid License Number.");
-        }
+    // Setters (if needed)
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
-    public void setVin(String vin) {
-        if (vin != null && !vin.isEmpty()) {
-            this.vin = vin;
-        } else {
-            System.out.println("Invalid VIN.");
-        }
+    public void setCar(Car car) {
+        this.car = car;
     }
 
     public void setRentalDate(String rentalDate) {
-        if (rentalDate != null && !rentalDate.isEmpty()) {
-            this.rentalDate = rentalDate;
-        } else {
-            System.out.println("Invalid Rental Date.");
-        }
+        this.rentalDate = rentalDate;
     }
 
     public void setRentalDays(int rentalDays) {
         if (rentalDays > 0) {
             this.rentalDays = rentalDays;
         } else {
-            System.out.println("Invalid Number of Rental Days.");
+            System.out.println("Invalid number of rental days.");
         }
     }
 
-    // Special Purpose Method
+    // Method to update rental count
+    public void updateNumRental() {
+        numRental--;
+    }
+
+    // toString for displaying rental info
     public String toString() {
-        return "Customer Name: " + customerName +
-               "\nLicense Number: " + licenseNumber +
-               "\nCar VIN: " + vin +
-               "\nRental Date: " + rentalDate +
-               "\nNumber of Days: " + rentalDays;
+        return "Rental Details:\n"
+             + "Customer Info:\n" + customer.toString() + "\n"
+             + "Car Info:\n" + car.toString() + "\n"
+             + "Rental Date: " + rentalDate + "\n"
+             + "Rental Days: " + rentalDays + "\n";
     }
 }
