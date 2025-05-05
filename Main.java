@@ -1,6 +1,4 @@
 import java.util.Scanner;
-
-import javax.print.attribute.standard.JobHoldUntil;
 import javax.swing.JOptionPane;
 
 public class Main {
@@ -91,7 +89,7 @@ public class Main {
         restart = true;
         do {
             try {
-                c.setDOB(JOptionPane.showInputDialog("Enter Date of Birth: "));
+                c.setDOB(JOptionPane.showInputDialog("Enter Date of Birth (Format MM/DD/YYYY): "));
                 restart = false;
             } catch (IllegalArgumentException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
@@ -100,7 +98,7 @@ public class Main {
         restart = true;
         do {
             try {
-                c.setPhone(JOptionPane.showInputDialog("Enter phone number: "));
+                c.setPhone(JOptionPane.showInputDialog("Enter phone number (Format XXX-XXX-XXXX): "));
                 restart = false;
             } catch (IllegalArgumentException e) {
                 JOptionPane.showMessageDialog(null, e.getMessage());
@@ -123,17 +121,17 @@ public class Main {
     public static void updateCustomerPhone(Customer[] customer, int customerCount) {
         String message = "";
         int sum = 0;
-        //Loops through array of policies to create the message for display
+        //Loops through array of customers to create the message for display
         for (int i = 0 ; i<customerCount;i++) {
                 sum = 1 + i;
-                message += customerCount + ".\n";
+                message += sum + ".\n";
                 message += customer[i].toString() + "\n";
         }
         try {
             int options = Integer.parseInt(
                     JOptionPane.showInputDialog("Enter the number of customer to update phone number\n\n" + message));
             if (options > 0 && customer[options - 1].getPhone() != null) {
-                customer[options - 1].setPhone(JOptionPane.showInputDialog("Enter phone number: "));
+                customer[options - 1].setPhone(JOptionPane.showInputDialog("Enter phone number (Format XXX-XXX-XXXX): "));
             } else {
                 JOptionPane.showMessageDialog(null, "Customer not found");
             }
@@ -146,7 +144,7 @@ public class Main {
     public static void updateCustomerLicense(Customer[] customer, int customerCount) {
         String message = "";
         int sum = 0;
-        //Loops through array of policies to create the message for display
+        //Loops through array of customers to create the message for display
         for (int i = 0 ; i<customerCount;i++) {
                 sum = 1 + i;
                 message += sum + ".\n";
@@ -169,7 +167,7 @@ public class Main {
     public static int removeCustomer(Customer[] customer, int customerCount) {
         String message = "";
         int sum = 0;
-        //Loops through array of policies to create the message for display
+        //Loops through array of customers to create the message for display
         for (int i = 0 ; i<customerCount;i++) {
                 sum = 1 + i;
                 message += sum + ".\n";
@@ -180,7 +178,7 @@ public class Main {
             if(options>0 && customer[options-1].getName() != null) {
                 //Making object null at index to delete it
                 customer[options-1] = null;
-                //Shifting the policies to fill the space
+                //Shifting the customers to fill the space
                 for(int i=options-1;i<customerCount;i++){
                     customer[i] = customer[i+1];
                 }

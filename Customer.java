@@ -49,15 +49,21 @@ public class Customer{
     public void setDOB(String DOB) {
         if (DOB == null || DOB.equals("")) {
             throw new IllegalArgumentException("Date of birth must be provided.");
+        } else if (DOB.length() != 10) {
+            throw new IllegalArgumentException("Format incorrect.");
+        } else {
+            this.DOB = DOB;
         }
-        this.DOB = DOB;
     }
 
     public void setPhone(String phone) {
         if (phone == null || phone.equals("")) {
             throw new IllegalArgumentException("Phone number must be provided.");
+        } else if (phone.length() != 12) {
+            throw new IllegalArgumentException("Format incorrect.");
+        } else {
+            this.phone = phone;
         }
-        this.phone = phone;
     }
 
     public void setLicenseNum(String licenseNum) {
